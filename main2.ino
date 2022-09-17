@@ -20,8 +20,8 @@ String quality = "";
 
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &WIRE);
 
-const char* ssid = "YeagerEren"; // Write here your router's username
-const char* password = "pweu6570"; // Write here your router's passward
+const char* ssid = "WiFi_name"; // Write here your router's username
+const char* password = "WiFi_password"; // Write here your router's passward
 
 void setup(){
   
