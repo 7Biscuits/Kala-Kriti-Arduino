@@ -20,8 +20,8 @@ String quality;
 
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &WIRE);
 
-const char *WIFI_SSID = "YeagerEren";
-const char *WIFI_PASSWORD = "pweu6570";
+const char *WIFI_SSID = "your-wifi-name";
+const char *WIFI_PASSWORD = "your-wifi-password";
 
 String boolData;
 char strVal[10] = {0};
