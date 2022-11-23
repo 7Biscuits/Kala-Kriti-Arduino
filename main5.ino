@@ -1,5 +1,3 @@
-// Sck of OLED is connected to D1 or GPIO 5 & SDA of OLED is connected to D2 or GPIO 4
-
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -46,9 +44,9 @@ void setup(){
 
   pinMode(buzzer, OUTPUT);                       //set beeper for output
   pinMode(sensor, INPUT);                       //set sensor for input
-  pinMode (red, OUTPUT);
-  pinMode (green, OUTPUT);
-  pinMode (blue, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+//  pinMode(blue, OUTPUT);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
@@ -71,34 +69,35 @@ void loop(){
   digitalWrite (blue, LOW);
   digitalWrite (buzzer, LOW);
 
-  if (gasLevel <= 320) {
+  if (gasLevel >= 400 and gasLevel < 500) {
     itoa(gasLevel, strVal, 10);
-    myFunction("http://kalakritioof.herokuapp.com/save/", "GOOD", "false", strVal, green);
+    myFunction("http://kalakritioof.herokuapp.com/save", "NOICE", "false", strVal, green);
+    tone(buzzer, 1000);
   }
 
-  else if (gasLevel > 320 and gasLevel < 700) {
+  else if (gasLevel >= 500) {
     itoa(gasLevel, strVal, 10);
-    myFunction("http://kalakritioof.herokuapp.com/save/", "UNHEALTHY", "true", strVal, blue);
+    myFunction("http://kalakritioof.herokuapp.com/save", "UNHOLY", "true", strVal, red);
   }
 
-  else if (gasLevel > 700) {
-    itoa(gasLevel, strVal, 10);
-    myFunction("http://kalakritioof.herokuapp.com/save/", "HAZARDOUS", "true", strVal, red);
-  }
+//  else if (gasLevel > 700) {
+//    itoa(gasLevel, strVal, 10);
+//    myFunction("http://kalakritioof.herokuapp.com/save", "DANGEROUS", "true", strVal, red);
+//  }
 
-//  display.clearDisplay();
-//  display.setTextColor(WHITE);
-//  display.setCursor(5, 5);
-//  display.setTextSize(1);
-//  display.print("Air Quality is: ");
-//  display.setCursor(100, 5);
-//  display.setTextSize(1);
-//  display.print(gasLevel);
-//  display.setTextSize(2);
-//  display.setCursor(10, 30);
-//  display.println(quality);
-//  display.display();
-//  delay(500);
+  display.clearDisplay();
+  display.setTextColor(WHITE);
+  display.setCursor(5, 5);
+  display.setTextSize(1);
+  display.print("Air Quality is: ");
+  display.setCursor(100, 5);
+  display.setTextSize(1);
+  display.print(gasLevel);
+  display.setTextSize(2);
+  display.setCursor(10, 30);
+  display.println(quality);
+  display.display();
+  delay(500);
   
 } 
 
